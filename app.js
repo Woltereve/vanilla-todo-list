@@ -19,6 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	action.classList.add('todo-actions');
 	item.append(action);
 
+const checkButton =document.createElement('button');
+checkButton.classList.add('action-check');
+checkButton.textContent='Terminée'
+action.append(checkButton);
+
+const deleteButton =document.createElement('button');
+deleteButton.classList.add('action-delete');
+deleteButton.textContent='Supprimer'
+action.append(deleteButton);
+
+
+
+
 });
 
 
