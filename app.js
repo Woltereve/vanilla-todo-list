@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		const label = document.createElement('span');
-		label.textContent = text;
+		label.textContent = text.trim();
 		item.append(label);
 		todoList.append(item);
 
@@ -27,21 +27,33 @@ document.addEventListener('DOMContentLoaded', () => {
 		checkButton.textContent = 'Terminée';
 		action.append(checkButton);
 
+		checkButton.addEventListener('click', () => {
+			item.classList.toggle('done');
+			if (item.classList.contains('done')) {
+				checkButton.textContent = 'A faire';
+			} else {
+				checkButton.textContent = 'Terminée';
+			}
+		});
+
 		const deleteButton = document.createElement('button');
 		deleteButton.classList.add('action-delete');
 		deleteButton.textContent = 'Supprimer';
 		action.append(deleteButton);
 
-		newTodo.value = '';
-
-		newTodo.addEventListener('keydown', (event) => {
-			if (event.key === 'Enter') {
-				addToItem(newTodo.value);
-			}
+		deleteButton.addEventListener('click', () => {
+			item.remove();
 		});
+
+		newTodo.value = '';
 	}
 
 	addTodo.addEventListener('click', () => {
 		addToItem(newTodo.value);
+	});
+	newTodo.addEventListener('keydown', (event) => {
+		if (event.key === 'Enter') {
+			addToItem(newTodo.value);
+		}
 	});
 });
